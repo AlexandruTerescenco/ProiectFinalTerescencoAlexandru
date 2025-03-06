@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proiect_Final_TerescencoAlexandru.Models
 {
@@ -28,10 +29,10 @@ namespace Proiect_Final_TerescencoAlexandru.Models
         public string Reviewer { get; set; }
         [Required]
         public float Score { get; set; }
-        //public int comment_id { get; set; }
         public Comment? Comment { get; set; }
         public int screenshot_id { get; set; }
-        public Screenshot? Screenshot { get; set; }
+        public Screenshot Screenshot { get; set; }
         public ICollection<Comment>? Comments { get; set; }
+        public ICollection<Screenshot>? Screenshots { get; set; }
     }
 }

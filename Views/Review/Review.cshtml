@@ -1,20 +1,92 @@
-﻿@{
-    ViewBag.Title = "Frostpunk2";
+﻿@model Proiect_Final_TerescencoAlexandru.Models.Game
+
+@using Microsoft.AspNetCore.Http;
+@using Proiect_Final_TerescencoAlexandru.DB
+@using Proiect_Final_TerescencoAlexandru.Models
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var gameId = HttpContextAccessor.HttpContext.Session.GetInt32("GameId");
 }
 
-<h1 class="display-4 fw-bold mb-3 text-center text-white">Frostpunk2 Review</h1>
-<img src="~/Images/Frostpunk 2/Screenshots/Screen1.jpg" alt="Frostpunk 2" class="rounded-3" style="width:100%;" />
+@{
+    ViewData["Title"] = $"{Model.Name} review";
+}
+
+<h1 class="display-4 fw-bold mb-3 text-center text-white">@Model.Name Review</h1>
+<img src="~/Images/@Model.Name/Screenshots/Screen1.jpg" alt="" class="rounded-3" style="width:100%;" />
+
+<div class="d-none w-75 h-75">
+    <img class="w-75 h-75" src="#" alt="" />
+</div>
 
 <div>
-    <p class="fs-4 my-5 text-white">
-        Most sequels to successful games are safe, conservative iterations on the ideas of the original, but not here: Frostpunk 2 is a bold follow-up that takes an almost entirely different approach to its city-building strategy. It’s set in the same bleak, iced-over world where people struggle to survive, but it’s refreshing that we’re not retreading the same frozen ground. Everything from how you place buildings to how you manage resources and heat your city is a new spin, and its political system is a creative way to interact with the people of New London that does a great job of conveying a sense of quid-pro-quo negotiation in a representative democracy. The zoomed-out perspective does mean that we lose a lot of the feeling of intimacy that made the first game truly stand out, but there’s no shortage of morally questionable decisions to make as you’re building your society.
+    <p class="fs-4 my-5 text-white">@Model.Review</p>
 
-        A frosty atmosphere is strong, thanks to bone-chilling weather effects and dramatic music that swells as tension in your city increases. Coming from a replay of the first Frostpunk, I was initially missing the ability to see people walking in the streets. That said, they do pop up with comments on your actions and an announcer on the loudspeaker gives occasionally amusing remarks on current events, so it doesn’t feel like a ghost town. The map itself is obviously fairly uniform because it’s covered in white snow and ice, but there are features like mountains and cliffs to give each area its own look, and as you build it becomes much more colorful thanks to intricate districts and the automatically created power lines which pulse red when tension runs high.
-    </p>
-    <div class="d-flex flex-row justify-content-between position-relative" style="height: 500px; margin-bottom: 50px">
-        @for (int i = 2; i < 5; i++)
-        {
-            <img src="~/Images/Frostpunk 2/Screenshots/Screen@(i + ".jpg")" class="rounded-3" style="margin-right: 10px; width: 30%; height: 50%"/>
-        }
+    <div id="carouselExampleControls" class="d-flex flex-row justify-content-between position-relative carousel slide" data-bs-ride="carousel slide" style="height: 400px; margin-bottom: 50px">
+        <div class="carousel-inner d-flex justify-content-between">
+            @* <div class="carousel-item active">  *@
+            @*     <img src="~/Images/Frostpunk 2/Screenshots/Screen@("2.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" />  *@
+            @* </div> *@
+            @* <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("3.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @* </div> *@
+            @* <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("4.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @* </div> *@
+            @* <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("5.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @* </div> *@
+            @* <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("6.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @* </div> *@
+            @*     <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("7.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @*     </div> *@
+            @*     <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("8.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @*     </div> *@
+            @*     <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("9.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @*     </div> *@
+            @*     <div class="carousel-item"> *@
+            @*         <img src="~/Images/Frostpunk 2/Screenshots/Screen@("10.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @*     </div> *@
+            @* @foreach(var screen in @Model.Screenshots) { *@
+            @*     <div class="carousel-item active"> *@
+            @*         <img src="~@screen.image_2" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" /> *@
+            @*     </div> *@
+            @* } *@
+            @{
+                var screens = Model.Screenshot.GetType().GetProperties();
+                //var screenSrc = string.Format("data:{0};base64, {1}", screens, Convert.ToBase64String);
+
+                for(int i = 2; i < screens.Length-2; i++) 
+                {
+                    if (i == 2)
+                    {
+                        <div class="carousel-item active">
+                            @*<img src="~/Images/Frostpunk 2/Screenshots/Screen@("2.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" />*@
+                            <img src="~/Images/Frostpunk 2/Screenshots/Screen@("2.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" />
+                        </div>
+                    }
+                    else
+                    {
+                        //if (!screens[i].Equals(System.DBNull.Value))
+                        //{
+                            <div class="carousel-item">
+                                <img src="~/Images/Frostpunk 2/Screenshots/Screen@($"{i}.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" />
+                             </div>
+                        //}
+                        //else i = 2;
+                    }
+                }
+            }
+        </div>
+        <a class="carousel-control-prev" data-bs-target="#carouselExampleControls" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" data-bs-target="#carouselExampleControls" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
     </div>
 </div>
