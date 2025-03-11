@@ -12,20 +12,15 @@ namespace Proiect_Final_TerescencoAlexandru.Models
         [Required]
         [StringLength(50)]
         public string Publisher { get; set; }
-        [Required]
         [StringLength(50)]
         public string Developer { get; set; }
-        [Required]
         [StringLength(50)]
         public string Genre { get; set; }
         public DateTime ReleaseDate { get; set; }
-        [Required]
         public string Description { get; set; }
-        [Required]
         public string Image { get; set; }
         [Required]
         public string Review { get; set; }
-        [Required]
         public string Reviewer { get; set; }
         [Required]
         public float Score { get; set; }

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<h1 class="display-4 fw-bold mb-3">Login</h1>
+
+<form method="post" action="@Url.Action("Login", "Auth")">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+
+    <div class="mb-2">
+        <input class="form-control" type="text" id="username" name="username" placeholder="Username" />
+    </div>
+    <div class="mb-2">
+        <input class="form-control" type="password" id="password" name="password" placeholder="Password" />
+    </div>
+    <div>
+        <button class="btn btn-success w-100" type="submit">Login</button>
+    </div>
+</form>
+
+<div>
+    <p>Don't have an account <a class="link-offset-2 text-success" href="@Url.Action("ShowRegister","Auth")">Register</a></p>
+</div>

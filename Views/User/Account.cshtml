@@ -1,0 +1,14 @@
+﻿@model Proiect_Final_TerescencoAlexandru.Models.User
+
+@{
+    ViewData["Title"] = $"{Model.Username} | Account";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-primary">Welcome, @Model.Username!</h1>
+    <p class="lead text-muted">@Model.Email</p>
+</div>
+
+<div class="container mt-5">
+    <a class="btn btn-outline-danger" href="@Url.Action("Logout","Auth")">Logout</a>
+</div>

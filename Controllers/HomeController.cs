@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using ProiectFinalTerescencoAlexandru.Models;
+using Proiect_Final_TerescencoAlexandru.Models;
 
 namespace ProiectFinalTerescencoAlexandru.Controllers
 {

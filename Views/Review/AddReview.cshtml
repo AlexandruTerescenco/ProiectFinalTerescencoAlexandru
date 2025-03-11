@@ -1,0 +1,23 @@
+﻿
+<h1 class="display-4 fw-bold mb-3 text-center text-white">Add Review</h1>
+
+<form method="post" class="h-100" action="@Url.Action("CreateReview", "Review")">
+    <div class="mb-2">
+        <input class="form-control" type="text" name="name" placeholder="Name" />
+    </div>
+    <div class="mb-2 h-50">
+        <textarea class="form-control h-100" type="text" name="review" placeholder="Review"></textarea>
+    </div>
+    <div class="mb-2">
+        <input class="form-control" type="file" name="mainImage" placeholder="Main Image" />
+    </div>
+    @* <div class="mb-2"> *@
+    @*     <input class="form-control" type="file" multiple name="screenshots[]" placeholder="Screenshots" /> *@
+    @* </div> *@
+    <div class="mb-2">
+        <input class="form-control" type="number" name="score" placeholder="Score" />
+    </div>
+    <div class="mb-2">
+        <button type="submit" class="btn btn-success w-100">Create</button>
+    </div>
+</form>

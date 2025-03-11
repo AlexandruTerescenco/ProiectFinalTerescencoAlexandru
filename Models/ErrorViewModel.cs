@@ -1,4 +1,4 @@
-namespace ProiectFinalTerescencoAlexandru.Models
+namespace Proiect_Final_TerescencoAlexandru.Models
 {
     public class ErrorViewModel
     {

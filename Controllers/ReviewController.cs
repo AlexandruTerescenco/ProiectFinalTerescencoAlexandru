@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Proiect_Final_TerescencoAlexandru.DB;
 using Proiect_Final_TerescencoAlexandru.Models;
+using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Proiect_Final_TerescencoAlexandru.Controllers
 {
@@ -25,20 +27,6 @@ namespace Proiect_Final_TerescencoAlexandru.Controllers
         {
             var game = _context.games.FirstOrDefault(g => g.Name == name);
             game.Screenshot = _context.Screenshots.FirstOrDefault(s => s.screenshot_Id == game.screenshot_id);
-            //game.Screenshot = (Screenshot)_context.Screenshots.Where(s => s.screenshot_Id == game.screenshot_id)
-            //    .Select(s => new
-            //    {
-            //        s.image_1, 
-            //        s.image_2,
-            //        s.image_3,
-            //        s.image_4,
-            //        s.image_5,
-            //        s.image_6,
-            //        s.image_7,
-            //        s.image_8,
-            //        s.image_9,
-            //        s.image_10
-            //    });
 
             if (game != null)
             {
@@ -51,6 +39,47 @@ namespace Proiect_Final_TerescencoAlexandru.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        //AddReview
+        [HttpPost]
+        public async Task<ActionResult> CreateReview(string name, string review, string mainImage, float score)
+        {
+            var Screenshots = new Screenshot();
+            
+            var alreadyExists = _context.games.FirstOrDefault(g => g.Name == name);
+
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            var user = _context.Users.FirstOrDefault(u => u.user_Id == userId);
+
+            if (alreadyExists != null)
+            { 
+                ModelState.AddModelError("", "Review for this game already exists.");
+                return View();
+            }
+
+            var game = new Game
+            {
+                Name = name,
+                Review = review,
+                Image = mainImage,
+                //Screenshots = (ICollection<Screenshot>)Screenshots,
+                Score = score,
+                Reviewer = user.Username,
+                screenshot_id = Screenshots.screenshot_Id
+            };
+
+            _context.Screenshots.Add(Screenshots);
+            _context.games.Add(game);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AddReview()
+        {
+            return View();
         }
     }
 }

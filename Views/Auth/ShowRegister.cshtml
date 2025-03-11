@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+
+<h1 class="display-4 fw-bold mb-3">Register</h1>
+
+<form method="post" action="@Url.Action("Register","Auth")">
+    <div class="mb-2">
+        <input class="form-control" type="text" name="username" placeholder="Username"/>
+    </div>    
+    <div class="mb-2">
+        <input class="form-control" type="email" name="email" placeholder="Email" />
+    </div>    
+    <div class="mb-2">
+        <input class="form-control" type="password" name="password" placeholder="Password" />
+    </div>    
+    <div class="mb-2">
+        <input class="form-control" type="password" name="confirm_password" placeholder="Confirm password" />
+    </div>
+    <div class="mb-2">
+        <button type="submit" class="btn btn-success w-100">Register</button>
+    </div>
+</form>
+
+<div>
+    <p>Already have an account <a class="link-offset-2 text-success" href="@Url.Action("ShowLogin","Auth")">Login</a></p>
+</div>
