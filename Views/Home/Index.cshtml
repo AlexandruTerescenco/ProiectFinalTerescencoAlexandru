@@ -2,27 +2,32 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="d-flex flex-column justify-content-center">
-    <div>
+<div class="d-flex flex-column justify-content-center container">
+    <div class="container">
         <a class="w-100" href="@Url.Action("ViewReview", "Review", new {name = "Frostpunk 2"} )" style="margin-bottom: 20px">
             <img class="w-100" src="~/Images/Frostpunk 2/MainImage.jpg" alt="Frostpunk 2" />
             <p style="position: relative; top: -100px; left: 40%; font-size:50px; color:azure">Frostpunk 2 Review</p>
         </a>
     </div>
     @* Featured reviews *@
-    <div class="d-flex flex-row justify-content-between" style="height: 500px; margin-bottom: 50px">
+    <div class="d-flex flex-row justify-content-between" style="height: 500px; margin-bottom: 50px; position:relative; right: 15%">
         <p style="font-size:4rem; height: 4rem; position:relative; left:45%; color:azure">Featured</p>
-        <div class="justify-content-between d-flex flex-row" style="position:relative; top: 20%; right: 10%">
-            @for (int i = 0; i < 4; i++)
-            {
-                <div style="width: 250px; height: 400px; background-color:white; margin: 20px">
-                </div>
-            }
+        <div class="container justify-content-between d-flex flex-row" style="position:relative; top: 20%">
+            <a style="width: 250px; height: 400px; background-color:white; margin: 20px" href="@Url.Action("ViewReview", "Review", new {name = "Spiderman PS4"} )">
+                <img class="w-100 h-100" src="~/Images/Spiderman PS4/MainImage.jpg" alt="" />
+            </a>
+            <a style="width: 250px; height: 400px; background-color:white; margin: 20px" href="@Url.Action("ViewReview", "Review", new {name = "God of War Ragnarok"} )">
+                <img class="w-100 h-100" src="~/Images/God of War Ragnarok/MainImage.jpg" alt="" />
+            </a>
+            <a style="width: 250px; height: 400px; background-color:white; margin: 20px">
+            </a>
+            <a style="width: 250px; height: 400px; background-color:white; margin: 20px">
+            </a>
         </div>
     </div>
 </div>
 @* Latest reviews *@
-<div style="display:flex; flex-direction:column; justify-content:center; border-top: 5px solid darkgray">
+<div class="container d-flex flex-column justify-content-center" style="border-top: 5px solid darkgray">
     <p style="font-size:2rem; height: 2rem; position:relative; left:5%; color:azure">Latest</p>
     <div class="justify-content-between d-flex flex-column" style="width: 100%; height: 90%; position:relative; top: 10%;">
         @for (int i = 0; i < 10; i++)

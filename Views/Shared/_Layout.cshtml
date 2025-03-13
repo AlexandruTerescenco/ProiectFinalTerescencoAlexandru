@@ -39,14 +39,16 @@
                     </ul>
                 </div>
                 @* Light,Dark Theme, search *@
-                <div class="h-100 align-self-center align-content-center" style="width:10%; min-width: 400px; position:relative; right: 5%">
-                    <button class="border-0 btn-dark" style="outline:none; background:none; margin-right: 5px">
-                        <img style="width:40px; height:40px" src="/Images/Light.svg" alt="Theme" />
-                    </button>
-                    <input type="text" class="border-1 bg-black text-white h-75" style=" width: 70%; min-width:200px" placeholder="Search" />
-                    <button class="border-0" style="outline:none; background:none">
-                        <img style="width:40px; height:40px" src="/Images/search.svg" alt="Search_Icon" />
-                    </button>
+                <div class="h-100 align-self-center align-content-center d-flex" style="width:10%; min-width: 400px; position:relative; right: 5%">
+                    @* <button class="border-0 btn-dark" style="outline:none; background:none; margin-right: 5px; width: 15%"> *@
+                    @*     <img style="width:40px; height:40px" src="/Images/Light.svg" alt="Theme" /> *@
+                    @* </button> *@
+                    <form method="get" class="align-content-center" style="width: 80%" action="@Url.Action("ViewReview", "Review")">
+                        <input type="text" class="border-1 bg-black text-white h-75" style=" width: 70%; min-width:200px" name="name" placeholder="Search" />
+                        <button type="submit" class="border-0" style="outline:none; background:none">
+                            <img style="width:40px; height:40px" src="/Images/search.svg" alt="Search_Icon" />
+                        </button>
+                    </form>
                 </div>
                 <a class="btn" data-bs-toggle="collapse" href="#collapsable">
                     <img src="~/Images/menu.svg" />

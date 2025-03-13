@@ -26,7 +26,7 @@ namespace Proiect_Final_TerescencoAlexandru.Controllers
         public ActionResult ViewReview(string name) 
         {
             var game = _context.games.FirstOrDefault(g => g.Name == name);
-            game.Screenshot = _context.Screenshots.FirstOrDefault(s => s.screenshot_Id == game.screenshot_id);
+            //game.Screenshot = _context.Screenshots.FirstOrDefault(s => s.screenshot_Id == game.screenshot_id);
 
             if (game != null)
             {
@@ -35,7 +35,7 @@ namespace Proiect_Final_TerescencoAlexandru.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Invalid game");
+                ModelState.AddModelError("", "Game not found");
             }
 
             return RedirectToAction("Index", "Home");
@@ -43,9 +43,15 @@ namespace Proiect_Final_TerescencoAlexandru.Controllers
 
         //AddReview
         [HttpPost]
-        public async Task<ActionResult> CreateReview(string name, string review, string mainImage, float score)
+        public async Task<ActionResult> CreateReview(string name, string review, float score)
         {
-            var Screenshots = new Screenshot();
+            var scrId = _context.Screenshots.Max(s => s.screenshot_Id);
+            //var gId = _context.games.Max(g => g.Id);
+            var Screenshots = new Screenshot()
+            {
+                screenshot_Id = scrId + 1
+            };
+
             
             var alreadyExists = _context.games.FirstOrDefault(g => g.Name == name);
 
@@ -61,9 +67,10 @@ namespace Proiect_Final_TerescencoAlexandru.Controllers
 
             var game = new Game
             {
+                //Id = gId + 1,
                 Name = name,
                 Review = review,
-                Image = mainImage,
+                Image = "MainImage.jpg",
                 //Screenshots = (ICollection<Screenshot>)Screenshots,
                 Score = score,
                 Reviewer = user.Username,

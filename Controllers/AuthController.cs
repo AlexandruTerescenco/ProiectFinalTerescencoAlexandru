@@ -13,13 +13,12 @@ namespace AlexandruBlog.Controllers
             _context = context;
         }
 
-        //1. ShowLogin
         public ActionResult ShowLogin()
         {
-            return View(); //View : Auth/ShowLogin
+            return View(); 
         }
 
-        //2. Login
+        //Login
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -49,7 +48,7 @@ namespace AlexandruBlog.Controllers
 
         }
 
-        //3.Register
+        //Register
         [HttpPost]
         public async Task<ActionResult> Register(string username, string email, string password, string confirm_password)
         {
@@ -76,13 +75,12 @@ namespace AlexandruBlog.Controllers
             return RedirectToAction("ShowLogin", "Auth");
         }
 
-        //4.ShowRegister
         public ActionResult ShowRegister()
         {
             return View();
         }
 
-        //5. Logout
+        //Logout
         public ActionResult Logout() 
         {
             if (HttpContext.Session != null) 

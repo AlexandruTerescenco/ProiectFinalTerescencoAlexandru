@@ -25,27 +25,19 @@
     <div id="carouselExampleControls" class="d-flex flex-row justify-content-between position-relative carousel slide" data-bs-ride="carousel slide" style="height: 400px; margin-bottom: 50px">
         <div class="carousel-inner d-flex justify-content-between">
             @{
-                var screens = Model.Screenshot.GetType().GetProperties();
-                //var screenSrc = string.Format("data:{0};base64, {1}", screens, Convert.ToBase64String);
-
-                for(int i = 2; i < screens.Length-2; i++) 
+                for(int i = 2; i < 10; i++) 
                 {
                     if (i == 2)
                     {
                         <div class="carousel-item active">
-                            @*<img src="~/Images/Frostpunk 2/Screenshots/Screen@("2.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" />*@
                             <img src="~/Images/@Model.Name/Screenshots/Screen@("2.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" />
                         </div>
                     }
                     else
                     {
-                        //if (!screens[i].Equals(System.DBNull.Value))
-                        //{
-                            <div class="carousel-item">
+                        <div class="carousel-item">
                             <img src="~/Images/@Model.Name/Screenshots/Screen@($"{i}.jpg")" class="d-block rounded-3 w-100 h-100" style="margin-right: 10px" />
-                             </div>
-                        //}
-                        //else i = 2;
+                        </div>
                     }
                 }
             }

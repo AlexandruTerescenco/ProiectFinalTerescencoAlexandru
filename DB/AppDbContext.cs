@@ -20,17 +20,10 @@ namespace Proiect_Final_TerescencoAlexandru.DB
                 .HasForeignKey(c => c.game_Id)
                 .IsRequired();
 
-            //modelBuilder.Entity<Screenshot>()
-            //    .HasOne(g => g.Game)
-            //    .WithOne(g => g.Screenshot)
-            //    .HasForeignKey<Game>(g => g.screenshot_id)
-            //    .IsRequired();
-
             modelBuilder.Entity<Game>()
                 .HasOne(g => g.Screenshot)
                 .WithOne()
                 .HasForeignKey<Game>(g => g.screenshot_id);
-                
 
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.User)
